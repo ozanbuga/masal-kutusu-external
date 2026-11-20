@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türk Masalları Derlemesi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="progressBar"></div>
+
+    <header>
+        <h1>Türk Masalları</h1>
+        <div class="controls">
+            <button onclick="degistirMetinBoyutu(2)" title="Metni Büyüt">A+</button>
+            <button onclick="degistirMetinBoyutu(-2)" title="Metni Küçült">A-</button>
+            <button onclick="geceModuGecis()" title="Gece/Gündüz Modu">🌙</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside>
+            <input type="text" id="aramaKutusu" class="arama-kutusu" placeholder="Masal ara..." onkeyup="masallariFiltrele()">
+            
+            <select id="kategoriFiltresi" class="filtre-kutusu" onchange="masallariFiltrele()">
+                <option value="Tümü">Tüm Türler</option>
+                <option value="Anadolu Masalı">Anadolu Masalı</option>
+                <option value="Saray Masalı">Saray Masalı</option>
+                <option value="Hayvan Masalı">Hayvan Masalı</option>
+                <option value="Olağanüstü Masal">Olağanüstü Masal</option>
+                <option value="Güldürücü Masal">Güldürücü Masal</option>
+                <option value="Kahramanlık Masalı">Kahramanlık Masalı</option>
+            </select>
+
+            <div class="masal-listesi-baslik">İçindekiler</div>
+            <ul class="masal-listesi" id="masalListesi">
+                <li data-isim="keloğlan ve sihirli tas" data-tur="Anadolu Masalı"><button class="nav-btn active" onclick="masalGoster(1, this)">Keloğlan ve Sihirli Tas</button></li>
+                <li data-isim="billur köşk" data-tur="Saray Masalı"><button class="nav-btn" onclick="masalGoster(2, this)">Billur Köşk</button></li>
+                <li data-isim="nardaniye hanım" data-tur="Anadolu Masalı"><button class="nav-btn" onclick="masalGoster(3, this)">Nardaniye Hanım</button></li>
+                <li data-isim="tembel ahmet" data-tur="Güldürücü Masal"><button class="nav-btn" onclick="masalGoster(4, this)">Tembel Ahmet</button></li>
+                <li data-isim="yedi başlı ejderha" data-tur="Kahramanlık Masalı"><button class="nav-btn" onclick="masalGoster(5, this)">Yedi Başlı Ejderha</button></li>
+                <li data-isim="sabır taşı" data-tur="Anadolu Masalı"><button class="nav-btn" onclick="masalGoster(6, this)">Sabır Taşı</button></li>
+                <li data-isim="üç turunçlar" data-tur="Olağanüstü Masal"><button class="nav-btn" onclick="masalGoster(7, this)">Üç Turunçlar</button></li>
+                <li data-isim="altın bülbül" data-tur="Hayvan Masalı"><button class="nav-btn" onclick="masalGoster(8, this)">Altın Bülbül</button></li>
+            </ul>
+        </aside>
+
+        <main>
+            <!-- MASAL 1 -->
+            <article id="masal-1" class="masal-icerik active">
+                <h2>Keloğlan ve Sihirli Tas</h2>
+                <div class="masal-meta">Tür: Anadolu Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="keloglan.jpg" alt="Keloğlan ve Sihirli Tas" class="masal-gorsel">
+                <p>Bir varmış, bir yokmuş. Evvel zaman içinde, kalbur saman içinde, develer tellal iken, pireler berber iken uzak mı uzak bir köyde yaşlı bir kadınla Keloğlan adında bir oğlu yaşarmış. Keloğlan'ın başı kelmiş ama aklı pek yamanmış; gelgelelim tembelliği her şeyin önüne geçermiş.</p>
+                <p>Günlerden bir gün annesi çok hastalanmış. Evde yiyecek bir lokma ekmek bile kalmamış. Keloğlan mecburen yerinden kalkıp ormana odun toplamaya gitmiş. Odun keserken baltası bir kayaya çarpmış ve kayanın altından parıl parıl parlayan eski bir tas yuvarlanarak ayaklarının dibine düşmüş. Tası eline alıp tozunu silmek için ovduğunda tasın içinden dumanlar yükselmiş ve kocaman bir cin ortaya çıkmış.</p>
+                <blockquote>"Dile benden ne dilersen ey Keloğlan! İster saray, ister altın, söyle hemen yapayım!" diye gürlemiş cin.</blockquote>
+                <p>Keloğlan önce korkmuş ama sonra açlık aklına gelince, "Bana mükellef bir sofra kur, anam da yesin, ben de yiyeyim!" demiş. Göz açıp kapayıncaya kadar sofra kurulmuş. Keloğlan tası alıp eve koşmuş. Annesini iyileştirmiş, köydeki yoksullara da gizli gizli yardım etmeye başlamış. Sihirli tas sayesinde kimse aç kalmamış.</p>
+            </article>
+
+            <!-- MASAL 2 -->
+            <article id="masal-2" class="masal-icerik">
+                <h2>Billur Köşk</h2>
+                <div class="masal-meta">Tür: Saray Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="billur-kosk.jpg" alt="Billur Köşk" class="masal-gorsel">
+                <p>Çok eski zamanlarda, uçsuz bucaksız dağların ardında, bulutların hemen altında sırça bir köşk varmış. Bu köşke Billur Köşk derlermiş. Köşkün her tarafı kristallerden, camlardan yapılmış; güneş vurduğunda gökkuşağı gibi yedi renk parlarmış.</p>
+                <p>Ülkenin padişahının küçük oğlu, bir gece rüyasında Billur Köşk'ü ve o sultanı görmüş. Uyanır uyanmaz yollara düşmeye karar vermiş. Babası gitmemesi için çok yalvarmış ama şehzade dinlememiş. Kaf Dağı'nın eteklerine vardığında devlerle karşılaşmış. Zekasını kullanarak devleri birbirine düşürmüş ve yola devam etmiş.</p>
+                <p>Sonunda Billur Köşk'e ulaşmış. Sultan, onun cesaretini test etmek için ona zor bilmeceler sormuş. Şehzade, yolda karşılaştığı dervişin verdiği öğütleri hatırlayarak bilmeceleri bir bir çözmüş.</p>
+                <blockquote>"Aklın kılıcından keskindir ey şehzade, bu köşkün kapıları sana sonsuza dek açıktır!" demiş Sultan.</blockquote>
+                <p>Sultan onun zekasına ve cesaretine hayran kalmış. Kırk gün kırk gece süren bir düğünle evlenmişler ve Billur Köşk'te sonsuza dek mutlu yaşamışlar.</p>
+            </article>
+
+            <!-- MASAL 3 -->
+            <article id="masal-3" class="masal-icerik">
+                <h2>Nardaniye Hanım</h2>
+                <div class="masal-meta">Tür: Anadolu Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="nardaniye.jpg" alt="Nardaniye Hanım" class="masal-gorsel">
+                <p>Vaktiyle bir padişahın Nardaniye adında, nar gibi kırmızı yanaklı, incecik boylu bir kızı varmış. Nardaniye Hanım o kadar güzel ve iyi kalpliymiş ki bütün saray halkı onu el üstünde tutarmış. Fakat annesi ölünce padişahın evlendiği yeni kraliçe, Nardaniye'yi fena halde kıskanırmış.</p>
+                <blockquote>Kraliçe sihirli aynasına her sabah, "Söyle bana ey ayna, benden güzeli var mı bu dünyada?" diye sorar, ayna da hep "Nardaniye Hanım senden güzel" dermiş.</blockquote>
+                <p>Öfkesinden deliye dönen kraliçe, avcıyı çağırıp Nardaniye'yi ormana götürmesini emretmiş. Avcı kıza kıyamamış, onu ormanın derinliklerine bırakıp dönmüş. Nardaniye günlerce aç susuz yürümüş, sonunda kırk haramilerin saklandığı bir mağara bulmuş. Haramiler bu güzel kızı görünce onu çok sevmiş.</p>
+                <p>Fakat zalim kraliçe kızın yaşadığını öğrenince kılık değiştirip Nardaniye'ye zehirli bir elma satmış. Kız elmayı ısırır ısırmaz uykuya dalmış. Haramiler onu camdan bir tabuta koyup dağın zirvesine bırakmışlar. Yıllar sonra oradan geçen komşu ülkenin şehzadesi tabutu taşırken askerlerden biri tökezlemiş, sarsıntıyla zehirli lokma dışarı fırlamış ve kız uyanmış.</p>
+            </article>
+
+            <!-- MASAL 4 -->
+            <article id="masal-4" class="masal-icerik">
+                <h2>Tembel Ahmet</h2>
+                <div class="masal-meta">Tür: Güldürücü Masal • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="tembel-ahmet.jpg" alt="Tembel Ahmet" class="masal-gorsel">
+                <p>Zamanın birinde, bir köyde Tembel Ahmet adında bir oğlan yaşarmış. Ahmet o kadar tembelmiş ki, güneş doğduktan batana kadar yerinden kalkmaz, annesi ona yemek yedirirken bile çiğnemekten yorulup uyuyakalırmış. Annesi, "Oğlum kalk bir işin ucundan tut" dedikçe, Ahmet "Off ana" der, yattığı yerden dönermiş.</p>
+                <p>Bir gün annesinin canına tak etmiş ve Ahmet'i kapı dışarı etmiş. Ahmet oflaya puflaya yürümüş, köyün dışındaki büyük çınar ağacının altına yatmış. "Ağzıma düş armut" diye beklerken, ağacın dalından parıl parıl parlayan altın bir kuş tüyü düşmüş. Tüyü aldığı anda gaipten bir ses duyulmuş:</p>
+                <blockquote>"Ey Tembel Ahmet! Bu tüyle ne dilersen gerçek olacak ama unutma, sadece üç dilek hakkın var ve akılsızca dilenen dilek felaket getirir."</blockquote>
+                <p>Ahmet önce sonsuz yemek, sonra yumuşacık bir yatak dilemiş. Ama yalnızlıktan canı çok sıkılmış. Üçüncü dileğinde, aklının başına gelmesini ve çalışkan biri olmayı dilemiş. Bir anda içini büyük bir çalışma hevesi kaplamış. Köye dönmüş ve köyün en çalışkan genci olmuş.</p>
+            </article>
+
+            <!-- MASAL 5 -->
+            <article id="masal-5" class="masal-icerik">
+                <h2>Yedi Başlı Ejderha</h2>
+                <div class="masal-meta">Tür: Kahramanlık Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="ejderha.jpg" alt="Yedi Başlı Ejderha" class="masal-gorsel">
+                <p>Bir ülkenin tek su kaynağı, büyük bir dağın ardındaki pınarmış. Ancak bu pınarın başını yedi başlı korkunç bir ejderha tutmuş. Ejderha suyu serbest bırakmak için her ay köyden bir kurban istermiş. Köylüler çaresizlik içinde her ay kura çeker, kurbanı ağlayarak ejderhaya yollarlarmış.</p>
+                <p>Köyün yiğit ve akıllı genci Ali, bu zulme son vermeye yemin etmiş. Demirci ustasına gidip yedi gün yedi gece dövülmüş, çok keskin bir kılıç yaptırmış. Ejderhanın mağarasına vardığında, canavar alevler saçarak üzerine atılmış. Ali kıvrak hareketlerle ejderhanın başlarını kesmiş ama yerine yenileri çıkmış.</p>
+                <blockquote>O an dedesinin sözü kulaklarında yankılanmış: "Yiğidim, ejderhanın başı zehir, kalbi ise taştır. Gücü başında değil, göğsündeki parlayan kızıl puldadır!"</blockquote>
+                <p>Ali kılıcını ejderhanın boynuna değil, göğsüne doğru saplamış. Canavar korkunç bir çığlık atarak taş kesilmiş. Sular coşkuyla akmaya başlamış. Ali köye döndüğünde halk onu omuzlarında taşımış ve ülke sonsuza dek ejderha korkusu olmadan huzur içinde yaşamış.</p>
+            </article>
+
+            <!-- MASAL 6 -->
+            <article id="masal-6" class="masal-icerik">
+                <h2>Sabır Taşı</h2>
+                <div class="masal-meta">Tür: Anadolu Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="sabir-tasi.jpg" alt="Sabır Taşı" class="masal-gorsel">
+                <p>Büyük bir konakta, yapayalnız yaşayan, dertlerini kimseye anlatamayan genç ve güzel bir kız varmış. Kızın hayatı dışarıdan mükemmel görünse de içeride büyük acılar çekiyormuş. Babası onu zalim bir üvey anneyle baş başa bırakıp uzun bir yolculuğa çıkmış. Kızcağız her gün eziyet görür ama şikayet etmezmiş.</p>
+                <p>Bir gün pazara giden hizmetçisine, "Bana bir sabır taşı ile bir sabır bıçağı al" demiş. Hizmetçi taşı ve bıçağı getirmiş. Kız her gece odasına kapanır, sabır taşını önüne koyar ve bütün yaşadığı zulmü, haksızlığı ağlayarak taşa anlatırmış. Sonra sabır bıçağını taşa saplayıp şöyle dermiş:</p>
+                <blockquote>"Ben mi dayanayım, yoksa sen mi dayanaksın ey taş? İnsanın kalbi çatlar da dile gelmez, senin taş bağrın bu derde nasıl dayansın?"</blockquote>
+                <p>Günler ayları kovalamış. Bir gece sabır taşı kızın derdine dayanamayıp ortadan ikiye çatlamış. O sırada kapının arkasından olanları dinleyen babası, kızının ne büyük acılar çektiğini anlamış. Zalim üvey anneyi evden kovmuş, kızıyla birlikte mutlu ve huzurlu bir hayata başlamışlar.</p>
+            </article>
+
+            <!-- MASAL 7 -->
+            <article id="masal-7" class="masal-icerik">
+                <h2>Üç Turunçlar</h2>
+                <div class="masal-meta">Tür: Olağanüstü Masal • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="uc-turunclar.jpg" alt="Üç Turunçlar" class="masal-gorsel">
+                <p>Padişahın evlilik çağına gelmiş oğlu hiçbir kızı beğenmiyor, evlenmek istemiyormuş. Bir gün ormanda avlanırken yaşlı bir periye denk gelmiş. Peri şehzadeye pırıl pırıl parlayan üç turunç vermiş.</p>
+                <blockquote>"Al bunları yiğidim," demiş peri, "Ama sakın ola ki bir yudum suyun olmadığı kurak bir yerde bunları kesme. Yoksa ömrün boyunca pişmanlık ateşiyle yanarsın."</blockquote>
+                <p>Şehzade yola koyulmuş. Çölün ortasındayken meraktan dayanamayıp turunçlardan birini kesmiş. İçinden ayın on dördü gibi güzel bir kız çıkmış ve "Su!" diye inleyerek susuzluktan ölmüş. İkinci turunçta da aynı acı sonu yaşamış. Şehzade artık çok dikkatliymiş.</p>
+                <p>Son turuncu büyük bir pınarın başına geldiğinde kesmiş. İçinden çıkan dünya güzeli kıza hemen pınardan su içirmiş. Kız canlanmış, ona gülümsemiş. Şehzade kızı alıp saraya götürmüş. Yolda kötü kalpli bir cadı kıza tuzak kursa da, büyü bozularak kız eski haline dönmüş ve şehzadesine kavuşmuş.</p>
+            </article>
+
+            <!-- MASAL 8 -->
+            <article id="masal-8" class="masal-icerik">
+                <h2>Altın Bülbül</h2>
+                <div class="masal-meta">Tür: Hayvan Masalı • Okuma Süresi: ~2 dk</div>
+                <div class="ayrac"></div>
+                <img src="altin-bulbul.jpg" alt="Altın Bülbül" class="masal-gorsel">
+                <p>Padişahın sarayının bahçesinde sadece altından elmalar veren sihirli bir ağaç varmış. Ancak son zamanlarda her gece bu elmalardan biri kayboluyormuş. Küçük şehzade uyumamak için gözlerine tuz basmış ve gece yarısı elmayı çalanın ışıl ışıl parlayan bir Altın Bülbül olduğunu görmüş.</p>
+                <p>Şehzade okunu atmış ama sadece bülbülün altın bir tüyünü düşürebilmiş. Padişah bu tüyü görünce bülbülü canlı istemiş. Şehzade yollara düşmüş. Ormanda karşılaştığı konuşan bir kurda yardım etmiş. Kurt, vefa borcunu ödemek için ona rehberlik etmiş.</p>
+                <blockquote>"Gideceğin yol çetindir şehzadem," demiş Kurt, "Gözünü dört aç, devlerin sarayına girdiğinde ne altın ata ne de zümrüt kafese dokun, sadece bülbülü al ve çık!"</blockquote>
+                <p>Şehzade kurdun aklı sayesinde sadece Altın Bülbül'ü değil, dünyanın en güzel prensesini de alıp ülkesine dönmüş. Kıskanç abileri yolda ona tuzak kursalar da kurt onu yine kurtarmış. Saraya dönen şehzade prensesle kırk gün kırk gece süren bir düğün yapmış.</p>
+            </article>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

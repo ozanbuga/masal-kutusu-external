@@ -1,0 +1,314 @@
+/* TEMA DEĞİŞKENLERİ */
+:root {
+    --bg-color: #f9f7f1; 
+    --text-color: #2b2b2b; 
+    --sidebar-bg: #f0eadd;
+    --primary-color: #8a2a2a; 
+    --meta-color: #666666;
+    --button-bg: #e4dccc;
+    --button-hover: #d4c8b2;
+    --border-color: #dcd3c1;
+    --font-size-base: 18px; 
+    --shadow-color: rgba(0,0,0,0.06);
+}
+
+body.dark-mode {
+    --bg-color: #16161e;
+    --text-color: #d1d5db;
+    --sidebar-bg: #1f1f2e;
+    --primary-color: #e06c75;
+    --meta-color: #9ca3af;
+    --button-bg: #282c34;
+    --button-hover: #3b4048;
+    --border-color: #2c323c;
+    --shadow-color: rgba(0,0,0,0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. UX DOKUNUŞU: TEMA TUTARLILIĞI İÇİN METİN SEÇİM RENGİ */
+::selection {
+    background-color: var(--button-hover);
+    color: var(--primary-color);
+}
+
+/* OKUMA İLERLEME ÇUBUĞU */
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--primary-color);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--sidebar-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    position: relative;
+    z-index: 20;
+}
+
+h1 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button, select, input {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+button:hover { background-color: var(--button-hover); }
+
+/* 4. UX DOKUNUŞU: KLAVYE ERİŞİLEBİLİRLİĞİ (TAB TUŞU ODAĞI) */
+button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 3px;
+}
+
+.layout {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .layout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* YAN MENÜ VE ARAMA/FİLTRE */
+aside {
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-right: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+    aside {
+        width: 300px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+.arama-kutusu {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: var(--bg-color);
+}
+
+.filtre-kutusu {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: var(--bg-color);
+}
+
+.masal-listesi-baslik {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--meta-color);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3rem;
+}
+
+.masal-listesi {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.masal-listesi li { display: block; }
+.masal-listesi li.gizli { display: none; }
+
+.masal-listesi button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 0.8rem 1rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.masal-listesi button:hover, .masal-listesi button.active {
+    background-color: var(--sidebar-bg);
+    padding-left: 1.5rem;
+}
+
+.masal-listesi button.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.masal-listesi button.active::before {
+    content: "•";
+    position: absolute;
+    left: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* OKUMA ALANI */
+main {
+    flex: 1;
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.masal-icerik {
+    display: none;
+    width: 100%;
+    max-width: 720px;
+    animation: fadeIn 0.5s ease-out;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.masal-icerik.active { display: block; }
+
+.masal-icerik h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: normal;
+}
+
+.masal-meta {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--meta-color);
+    font-family: system-ui, sans-serif;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ANADOLU MOTİFİ AYRAÇ (CSS KARE) */
+.ayrac {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2.5rem auto;
+    position: relative;
+}
+
+.ayrac::before {
+    content: "";
+    height: 1px;
+    width: 50%;
+    background-color: var(--border-color);
+    position: absolute;
+}
+
+.ayrac::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+.masal-gorsel {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+/* MASAL KİTABI İLK HARF (DROP CAP) */
+.masal-icerik p:first-of-type::first-letter {
+    float: left;
+    font-size: 4rem;
+    line-height: 0.8;
+    padding-top: 0.2rem;
+    padding-right: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* 2. UX DOKUNUŞU: MASAL KİTABI İLK SATIR VURGUSU (SMALL CAPS) */
+.masal-icerik p:first-of-type::first-line {
+    font-variant: small-caps;
+    font-size: 1.05em;
+    letter-spacing: 0.5px;
+}
+
+.masal-icerik p {
+    margin-bottom: 1.2rem;
+    text-align: justify;
+    text-indent: 2rem;
+}
+
+.masal-icerik p:first-of-type { text-indent: 0; }
+
+/* 3. UX DOKUNUŞU: ALINTI VE DİYALOG TASARIMI */
+.masal-icerik blockquote {
+    margin: 1.5rem 0 1.5rem 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--sidebar-bg);
+    border-left: 4px solid var(--primary-color);
+    font-style: italic;
+    color: var(--meta-color);
+    border-radius: 0 8px 8px 0;
+    text-indent: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
