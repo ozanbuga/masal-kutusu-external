@@ -2,7 +2,7 @@
 
 Bu proje, İstanbul Medipol Üniversitesi **Programlamaya Giriş** dersi kapsamında geliştirilen; geleneksel Türk masallarını modern, sade ve etkileşimli bir arayüzle sunan **Tek Sayfa Web Uygulamasıdır (SPA)**.
 
-Vize aşamasında tek bir HTML dosyası olarak tasarlanan site, **External CSS ve JavaScript Yapılandırması** ödevi doğrultusunda modüler bir yapıya geçirilerek üç ayrı dosyaya (`index.html`, `style.css`, `script.js`) ayrılmıştır.
+Vize aşamasında tek bir HTML dosyası olarak tasarlanan sayfa, **External CSS ve JavaScript Yapılandırması** ödevi doğrultusunda modüler bir yapıya geçirilerek üç ayrı dosyaya (`index.html`, `style.css`, `script.js`) ayrılmıştır.
 
 ---
 
